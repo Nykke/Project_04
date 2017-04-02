@@ -1,0 +1,69 @@
+[
+  {
+    "users": {
+      "_model": "User",
+      "tom": {
+        "category": "tenant",
+        "division": "apartment",
+        "maintenance_requests": [
+          "bathroom"
+        ]
+      }
+    },
+    "maintenance_requests": {
+      "_model": "Maintenance_Request",
+      "bathroom": {
+        "tenant_name": "Tom",
+        "building_number": 17101,
+        "apt_number": 101,
+        "type": "bathroom",
+        "urgency": "high",
+        "description": "shower is overflowing whenever the water is turned on",
+        "completed": "no"
+      }
+    },
+    "users": {
+      "_model": "User",
+      "dede": {
+        "category": "landlord",
+        "division": "management",
+        "maintenance_requests":[
+          "bathroom"
+        ]
+      }
+    },
+    "maintenance_requests": {
+      "_model": "Maintenance_Request",
+      "kitchen": {
+        "tenant_name": "Rachel",
+        "building_number": 20033,
+        "apt_number": 204,
+        "type": "kitchen",
+        "urgency": "medium",
+        "description": "light is flickering",
+        "completed": "no"
+      }
+    },
+    "users": {
+      "_model": "User",
+      "rachel": {
+        "category": "Tenant",
+        "division": "apartment",
+        "maintenance_requests": [
+          "kitchen"
+        ]
+      }
+    },
+    "users": {
+      "_model": "User",
+      "maria": {
+        "category": "Landlord",
+        "division": "maintenance",
+        "maintenance_requests": [
+          "kitchen"
+        ]
+      }
+    }
+
+  }
+]
