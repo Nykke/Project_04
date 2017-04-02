@@ -7,11 +7,13 @@ As a User that is a Landlord, I should be able to add annoucements
 As a User that is a Landlord, I should be able to update the kid's corner
 As a User that is a Tenant, I should be able to make maintenance requests
 As a User that is Landlord, I should be able to update maintenance requests with notes and make as completed
+
+Silver: 
 As a User that is a Tenant, I should be able to chat with my Landlord via chat message
 As a user that is Landlord, I should be able to chat with Tenants via chat message 
 
 
-Sliver:
+Gold:
 As a User my login should be authenticated 
 As a User that is a Landlord, I should be able to make invoices for rent payments for each tenant
 As a User that is a Tenant, I should be able to make payments to Landlord 
