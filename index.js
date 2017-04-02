@@ -15,6 +15,11 @@ app.use("/assets", express.static("public"))
 //configuring body-parser to support html forms
 app.use(parser.urlencoded({extended: true}))
 
+//connecting to angular
+app.get("/", function(req, res) {
+  res.sendFile(__dirname + "/index.html")
+})
+
 //route defined for the index of all maintenance_requests
 app.get("/api/maintenance_requests", function(req, res){
   Maintenance_Request.find({}).then(function(maintenance_requests){
@@ -37,7 +42,7 @@ app.put("/api/maintenance_requests/:tenant_name", function(req, res){
   });
 })
 
-//route definded for deleting/removing a maintenance_request
+//route defined for deleting/removing a maintenance_request
 app.delete("/api/maintenance_request/:tenant_name", function(req, res){
   Maintenance_Request.findOne({tenant_name: req.params.tenant_name}).then(function(maintenance_request){
     res.json(maintenance_request);
