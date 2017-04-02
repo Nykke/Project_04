@@ -1,5 +1,8 @@
 const mongoose = require('./connection.js')
 
+var Schema = mongoose.Schema
+ObjectId = Schema.ObjectId
+
 const Maintenance_RequestSchema = new mongoose.Schema({
   tenant_name: String,
   building_number: Number,
@@ -7,7 +10,7 @@ const Maintenance_RequestSchema = new mongoose.Schema({
   type: String,
   urgency: String,
   description: String,
-  completed: String 
+  completed: String
 })
 
 const UserSchema = new mongoose.Schema({
