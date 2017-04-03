@@ -1,3 +1,5 @@
+"use strict"
+
 angular
   .module("project4", [
     "ui.router",
@@ -14,6 +16,11 @@ angular
   .controller("Maintenance_RequestIndexController", [
     "Maintenance_RequestFactory",
     Maintenance_RequestIndexControllerFunction
+  ])
+  .controller("Maintenance_RequestNewController", [
+    "$state",
+    "Maintenance_RequestFactory",
+    Maintenance_RequestNewControllerFunction
   ])
   .controller("Maintenance_RequestShowController", [
     "$state",
@@ -35,13 +42,18 @@ angular
       controller: "Maintenance_RequestIndexController",
       controllerAs: "vm"
     })
+    .state("maintenance_new", { //defining the create route view for maintenance requests
+      url:"/maintenance_requests/new",
+      templateUrl: "/assets/js/ng-views/maintenance_new.html",
+      controller: "Maintenance_RequestNewController",
+      controllerAs: "vm"
+    })
     .state("maintenance_show", { //defining the show route view
       url:"/maintenance_requests/:tenant_name",
       templateUrl: "/assets/js/ng-views/maintenance_show.html",
       controller: "Maintenance_RequestShowController",
       controllerAs: "vm"
     })
-
 
   }
 
@@ -57,7 +69,16 @@ angular
     this.maintenance_requests = Maintenance_RequestFactory.query();
   }
 
+  function Maintenance_RequestNewControllerFunction( $state, Maintenance_RequestFactory ){
+    this.maintenance_request = new Maintenance_RequestFactory();
+    this.create = function(){
+      this.maintenance_request.$save().then(function(maintenance_request){
+        $state.go("maintenance_show", {tenant_name: maintenance_request.tenant_name})
+      })
+    }
+  }
+
   //setting up what the show controller returns
-  function Maintenance_RequestShowControllerFunction ($state, $stateParams, Maintenance_RequestFactory ) {
+  function Maintenance_RequestShowControllerFunction ( $state, $stateParams, Maintenance_RequestFactory ) {
     this.maintenance_request = Maintenance_RequestFactory.get({tenant_name: $stateParams.tenant_name})
   }
