@@ -10,13 +10,14 @@ const Maintenance_RequestSchema = new mongoose.Schema({
   type: String,
   urgency: String,
   description: String,
-  completed: String
+  completed: String,
+  users: [ {type: Schema.ObjectId, ref:"User"} ]
 })
 
 const UserSchema = new mongoose.Schema({
   category: String,
   division: String,
-  maintenance_requests: [ {type: Schema.ObjectId, ref:"Maintenance_Request"} ]
+//   maintenance_requests: [ {type: Schema.ObjectId, ref:"Maintenance_Request"} ]
 })
 
 const Maintenance_Request = mongoose.model("Maintenance_Request", Maintenance_RequestSchema);
