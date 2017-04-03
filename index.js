@@ -63,14 +63,14 @@ app.post("/api/maintenance_requests", function(req, res){
 
 //route defined for editing a maintenance_request
 app.put("/api/maintenance_requests/:tenant_name", function(req, res){
-  Maintenance_Request.findOneandUpdate({tenant_name: req.params.tenant_name}, req.body,{new: true}).then(function(maintenance_request){
+  Maintenance_Request.findOneAndUpdate({tenant_name: req.params.tenant_name}, req.body,{new: true}).then(function(maintenance_request){
     res.json(maintenance_request);
   });
 })
 
 //route defined for deleting/removing a maintenance_request
 app.delete("/api/maintenance_request/:tenant_name", function(req, res){
-  Maintenance_Request.findOneandRemove({tenant_name: req.params.tenant_name}).then(function(){
+  Maintenance_Request.findOneAndRemove({tenant_name: req.params.tenant_name}).then(function(){
     res.json({success: true});
   });
 })
