@@ -1,6 +1,7 @@
 const Maintenance_Request = require("./models.js").Maintenance_Request;
 const User = require("./models.js").User;
 
+//clearing the database of existing maintenance_requests and users
 Maintenance_Request.remove({}, err =>{
   if (err){
     console.log(err);
@@ -13,6 +14,7 @@ User.remove({}, err => {
   }
 });
 
+//generating new instances of maintenance_requests and users
 var tom = new User({
   category: "tenant",
   division : "apartment"
@@ -39,7 +41,7 @@ var kitchen = new Maintenance_Request({
   apt_number: 204,
   type: "kitchen",
   urgency: "medium",
-  description: "ligt is flickering",
+  description: "light is flickering",
   completed: "no"
 });
 
@@ -53,20 +55,31 @@ var maria = new User({
   division: "apartment"
 });
 
-var users = [tom, dede, rachel, maria];
-var maintenance_requests = [bathroom, kitchen];
+var jackie = new User({
+  category: "tenant",
+  division: "apartment"
+});
 
-// users.forEach(function(user,i){
-//   user.maintenance_requests.push(maintenance_requests[i], maintenance_requests[i+1]);
-//   user.save(function(err){
-//     if (err){
-//       console.log(err);
-//     } else {
-//       console.log("request made!");
-//     }
-//   });
-// });
+var angie = new User({
+  category: "landlord",
+  division: "management"
+});
 
+var ac = new Maintenance_Request({
+  tenant_name: "Jackie",
+  building_number: 34005,
+  apt_number: 105,
+  type: "ac",
+  urgency: "high",
+  description: "air is no longer turning on, making a weird noise",
+  completed: "yes"
+});
+
+//users and maintenance_requests are defined
+var users = [tom, dede, rachel, maria, jackie, angie];
+var maintenance_requests = [bathroom, kitchen, ac];
+
+//assigning some maintenance_requests to each user
 maintenance_requests.forEach(function(maintenance_request,i){
   maintenance_request.users.push(users[i], users[i+1]);
   maintenance_request.save(function(err){
@@ -76,4 +89,23 @@ maintenance_requests.forEach(function(maintenance_request,i){
       console.log("request made!");
     }
   });
+});
+
+//assigning specific maintenance_requests to specific users
+bathroom.users.push(tom, dede)
+bathroom.save((err, maintenance_request) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(maintenance_request)
+  }
+});
+
+kitchen.users.push(rachel, maria)
+kitchen.save((err, maintenance_request) => {
+  if (err){
+    console.log(err);
+  } else {
+    console.log(maintenance_request)
+  }
 });
