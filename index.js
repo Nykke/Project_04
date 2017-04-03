@@ -15,13 +15,25 @@ const Maintenance_Request = require("./db/models.js").Maintenance_Request;
 //connect to mongoose
 const mongoose = require("./db/connection.js");
 
+const methodOverride = require('method-override');
+
 app.set("port", process.env.PORT || 3001)
 
 //the public folder is now defined as assets
 app.use("/assets", express.static("public"))
 
-//configuring body-parser to support html forms
-app.use(parser.json({extended: true}))
+// Add Middleware necessary for REST API's
+app.use(parser.urlencoded({extended: true}));
+app.use(parser.json());
+app.use(methodOverride('X-HTTP-Method-Override'));
+
+// CORS Support
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 
 //connecting to angular
 app.get("/", function(req, res) {
@@ -51,8 +63,7 @@ app.post("/api/maintenance_requests", function(req, res){
 
 //route defined for editing a maintenance_request
 app.put("/api/maintenance_requests/:tenant_name", function(req, res){
-  Maintenance_Request.findOneandUpdate({tenant_name: req.params.tenant_name}, req.body,
-  {new: true}).then(function(maintenance_request){
+  Maintenance_Request.findOneandUpdate({tenant_name: req.params.tenant_name}, req.body,{new: true}).then(function(maintenance_request){
     res.json(maintenance_request);
   });
 })
