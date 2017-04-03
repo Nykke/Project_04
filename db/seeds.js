@@ -1,6 +1,5 @@
 const Maintenance_Request = require("./models.js").Maintenance_Request;
 const User = require("./models.js").User;
-const seedData = require("./seedData.json");
 
 Maintenance_Request.remove({}, err =>{
   if (err){
@@ -58,7 +57,7 @@ var users = [tom, dede, rachel, maria];
 var maintenance_requests = [bathroom, kitchen];
 
 users.forEach(function(user,i){
-  user.maintenance_requests.push(maintenance_requests[i], maintenance_requests[i+1]); 
+  user.maintenance_requests.push(maintenance_requests[i], maintenance_requests[i+1]);
   user.save(function(err){
     if (err){
       console.log(err);
