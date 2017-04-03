@@ -69,7 +69,7 @@ app.put("/api/maintenance_requests/:tenant_name", function(req, res){
 })
 
 //route defined for deleting/removing a maintenance_request
-app.delete("/api/maintenance_request/:tenant_name", function(req, res){
+app.delete("/api/maintenance_requests/:tenant_name", function(req, res){
   Maintenance_Request.findOneAndRemove({tenant_name: req.params.tenant_name}).then(function(){
     res.json({success: true});
   });
