@@ -44,11 +44,17 @@ app.put("/api/maintenance_requests/:tenant_name", function(req, res){
 
 //route defined for deleting/removing a maintenance_request
 app.delete("/api/maintenance_request/:tenant_name", function(req, res){
-  Maintenance_Request.findOne({tenant_name: req.params.tenant_name}).then(function(maintenance_request){
-    res.json(maintenance_request);
+  Maintenance_Request.findOneandRemove({tenant_name: req.params.tenant_name}).then(function(){
+    res.json({success: true});
   });
 })
 
+//route defined for the showing maintenance_requests
+app.get("/api/maintenance_requests/:tenant_name", function(req, res){
+  Maintenance_Request.findOne({tenant_name: req.params.tenant_name}).then(function(maintenance_request){
+    res.json(maintenance_request);
+  }); 
+})
 
 //port where our app resides
 app.listen(3001, () => {
