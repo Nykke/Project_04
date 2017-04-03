@@ -56,9 +56,20 @@ var maria = new User({
 var users = [tom, dede, rachel, maria];
 var maintenance_requests = [bathroom, kitchen];
 
-users.forEach(function(user,i){
-  user.maintenance_requests.push(maintenance_requests[i], maintenance_requests[i+1]);
-  user.save(function(err){
+// users.forEach(function(user,i){
+//   user.maintenance_requests.push(maintenance_requests[i], maintenance_requests[i+1]);
+//   user.save(function(err){
+//     if (err){
+//       console.log(err);
+//     } else {
+//       console.log("request made!");
+//     }
+//   });
+// });
+
+maintenance_requests.forEach(function(maintenance_request,i){
+  maintenance_request.users.push(users[i], users[i+1]);
+  maintenance_request.save(function(err){
     if (err){
       console.log(err);
     } else {
