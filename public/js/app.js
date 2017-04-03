@@ -73,7 +73,6 @@ angular
     this.maintenance_request = new Maintenance_RequestFactory();
     this.create = function(){
       this.maintenance_request.$save(function(maintenance_request){
-        console.log(maintenance_request)
         $state.go("maintenance_show", {tenant_name: maintenance_request.tenant_name})
       })
   }
