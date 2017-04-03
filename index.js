@@ -53,7 +53,7 @@ app.delete("/api/maintenance_request/:tenant_name", function(req, res){
 app.get("/api/maintenance_requests/:tenant_name", function(req, res){
   Maintenance_Request.findOne({tenant_name: req.params.tenant_name}).then(function(maintenance_request){
     res.json(maintenance_request);
-  }); 
+  });
 })
 
 //port where our app resides
