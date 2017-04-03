@@ -5,3 +5,12 @@
 <p>{{vm.maintenance_request.urgency}}</p>
 <p>{{vm.maintenance_request.description}}</p>
 <p>{{vm.maintenance_request.completed}}</p>
+
+<input type="text" ng-model="vm.maintenance_request.tenant_name">
+<input type="text" ng-model="vm.maintenance_request.building_number">
+<input type="text" ng-model="vm.maintenance_request.apt_number">
+<input type="text" ng-model="vm.maintenance_request.type">
+<input type="text" ng-model="vm.maintenance_request.urgency">
+<textarea type="text" ng-model="vm.maintenance_request.description"></textarea>
+<input type="text" ng-model="vm.maintenance_request.completed">
+<button data-ng-click="vm.update()">Update Entry</button>

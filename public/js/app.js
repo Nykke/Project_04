@@ -72,13 +72,17 @@ angular
   function Maintenance_RequestNewControllerFunction( $state, Maintenance_RequestFactory ){
     this.maintenance_request = new Maintenance_RequestFactory();
     this.create = function(){
-      this.maintenance_request.$save().then(function(maintenance_request){
+      this.maintenance_request.$save(function(maintenance_request){
+        console.log(maintenance_request)
         $state.go("maintenance_show", {tenant_name: maintenance_request.tenant_name})
       })
-    }
   }
+}
 
   //setting up what the show controller returns
   function Maintenance_RequestShowControllerFunction ( $state, $stateParams, Maintenance_RequestFactory ) {
     this.maintenance_request = Maintenance_RequestFactory.get({tenant_name: $stateParams.tenant_name})
+    this.update = function (){
+      this.maintenance_request.$update({tenant_name: $stateParams.tenant_name})
+    }
   }
