@@ -85,4 +85,9 @@ angular
     this.update = function (){
       this.maintenance_request.$update({tenant_name: $stateParams.tenant_name})
     }
+    this.destroy = function(){
+      this.maintenance_request.$delete({tenant_name: $stateParams.tenant_name}, function() {
+        $state.go("welcome")
+      })
+    }
   }
