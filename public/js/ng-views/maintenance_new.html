@@ -1,12 +1,12 @@
 <h2>New Maintenance Request</h2>
 
 <form ng-submit="vm.create()">
-  <input type="text" name="maintenance_request[tenant_name]" placeholder="name">
-  <input type="text" name="maintenance_request[building_number]" placeholder="building number">
-  <input type="text" name="maintenance_request[apt_number]" placeholder="apt number">
-  <input type="text" name="maintenance_request[type]" placeholder="type of request">
-  <input type="text" name="maintenance_request[urgency]" placeholder="urgency level">
-  <textarea type="text" name="maintenance_request[description]" placeholder="description of problem"></textarea>
-  <input type="text" name="maintenance_request[completed]" placeholder="to be filled out by staff">
+  <input type="text" ng-model="vm.maintenance_request.tenant_name" placeholder="name">
+  <input type="text" ng-model="vm.maintenance_request.building_number" placeholder="building number">
+  <input type="text" ng-model="vm.maintenance_request.apt_number" placeholder="apt number">
+  <input type="text" ng-model="vm.maintenance_request.type" placeholder="type of request">
+  <input type="text" ng-model="vm.maintenance_request.urgency" placeholder="urgency level">
+  <textarea type="text" ng-model="vm.maintenance_request.description" placeholder="description of problem"></textarea>
+  <input type="text" ng-model="vm.maintenance_request.completed" placeholder="to be filled out by staff">
   <button type="submit">Submit</button>
 </form>
