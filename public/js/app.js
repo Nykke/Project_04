@@ -15,6 +15,12 @@ angular
     "Maintenance_RequestFactory",
     Maintenance_RequestIndexControllerFunction
   ])
+  .controller("Maintenance_RequestShowController", [
+    "$state",
+    "$stateParams",
+    "Maintenance_RequestFactory",
+    Maintenance_RequestShowControllerFunction
+  ])
 
 
   function Router($stateProvider) { //defining the main route view
@@ -29,6 +35,14 @@ angular
       controller: "Maintenance_RequestIndexController",
       controllerAs: "vm"
     })
+    .state("maintenance_show", { //defining the show route view
+      url:"/maintenance_requests/:tenant_name",
+      templateUrl: "/assets/js/ng-views/maintenance_show.html",
+      controller: "Maintenance_RequestShowController",
+      controllerAs: "vm"
+    })
+
+
   }
 
   //link to our backend api
@@ -38,7 +52,12 @@ angular
     })
   }
 
-  //setting up what the index controller returns 
+  //setting up what the index controller returns
   function Maintenance_RequestIndexControllerFunction( Maintenance_RequestFactory ){
     this.maintenance_requests = Maintenance_RequestFactory.query();
+  }
+
+  //setting up what the show controller returns
+  function Maintenance_RequestShowControllerFunction ($state, $stateParams, Maintenance_RequestFactory ) {
+    this.maintenance_request = Maintenance_RequestFactory.get({tenant_name: $stateParams.tenant_name})
   }

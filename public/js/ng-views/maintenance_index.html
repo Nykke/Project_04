@@ -1,3 +1,5 @@
 <h2>All Maintenance Requests</h2>
 
-<h2 data-ng-repeat="maintenance_request in vm.maintenance_requests"></h2>
+<h2 data-ng-repeat="maintenance_request in vm.maintenance_requests">
+  <a data-ui-sref="maintenance_show({tenant_name: maintenance_request.tenant_name})">{{maintenance_request.tenant_name}}</a>
+</h2>
