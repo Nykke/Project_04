@@ -76,9 +76,9 @@ app.delete("/api/maintenance_requests/:tenant_name", function(req, res){
 })
 
 //route defined to show users attached to request
-app.get("api/maintenance_requests/:tenant_name/users", function(req, res){
-  Maintenance_Request.findOne({tenant_name: req.params.tenant_name}).then(function(){
-    res.json(maintenance_request)
+app.get("/api/maintenance_requests/:tenant_name/users", function(req, res){
+  Maintenance_Request.user.find({}).then(function(users){
+    res.json(users)
   })
 })
 
