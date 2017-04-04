@@ -76,10 +76,37 @@ app.delete("/api/maintenance_requests/:tenant_name", function(req, res){
 })
 
 //route defined to show users attached to request
-app.get("/api/maintenance_requests/:tenant_name/users", function(req, res){
-  Maintenance_Request.user.find({}).then(function(users){
-    res.json(users)
+app.get("/api/maintenance_requests/:tenant_name/users", function(req, res, next){
+  req.maintenance_request.populate("users", function(err, maintenance_request){
+    if(err) {
+      return next(err);
+    }
+    res.json(maintenance_request)
   })
+})
+
+//route defined to create users attached to a request
+app.post("/api/maintenance_requests/:tenant_name/users", function(req, res, next){
+  var user = new User(req.body)
+  user.maintenance_request = req.maintenance_request
+  user.save(function(err, user){
+    if(err){ return next(err);
+    }
+    req.maintenance_request.users.push(user);
+    req.maintenance_request.save(function(err, maintenance_request){
+      if(err){ return next(err);
+      }
+      res.json(user);
+    })
+  })
+})
+
+//route defined to update users attached to a request
+app.put("/api/maintenance_requests/:tenant_name/users/:name", function(req, res, next){
+  Maintenance_Request.User.findOneAndUpdate({name: req.params.name}, req.body,
+    {new: true}).then(function(user){
+      res.json(user)
+    })
 })
 
 //port where our app resides

@@ -14,7 +14,7 @@ angular
     Maintenance_RequestFactoryFunction
   ])
   .factory("UserFactory", function($resource){
-    return $resource ("/api/maintenance_requests/:tenant_name/users/:category", {}, {
+    return $resource ("/api/maintenance_requests/:tenant_name/users/:name", {}, {
         update: {method: "PUT"}
       })
   })
@@ -109,7 +109,11 @@ angular
 }
   //view for users
   function UserShowControllerFunction (Maintenance_RequestFactory, UserFactory, $stateParams ) {
-    this.maintenance_request = Maintenance_RequestFactory.get({tenant_name: $stateParams.tenant_name})
-    console.log($stateParams.tenant_name)
-    this.users = UserFactory.query()
+    this.maintenance_request = Maintenance_RequestFactory.get({tenant_name: $stateParams.tenant_name}, (maintenance_request) => {
+      console.log($stateParams.tenant_name)
+      this.users = maintenance_requests.UserFactory.query({tenant_name: $stateParams.tenant_name.users})
+        console.log($stateParams.tenant_name)
+    })
+
+
   }
