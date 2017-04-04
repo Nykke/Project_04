@@ -6,7 +6,7 @@
 <p>{{vm.maintenance_request.description}}</p>
 <p>{{vm.maintenance_request.completed}}</p>
 
-<h4><a ui-sref="userShow">users</a></h4>
+<h4><a ui-sref="userShow({tenant_name: vm.maintenance_request.tenant_name})">users</a></h4>
 
 <input type="text" ng-model="vm.maintenance_request.tenant_name">
 <input type="text" ng-model="vm.maintenance_request.building_number">

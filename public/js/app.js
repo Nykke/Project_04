@@ -39,6 +39,11 @@ angular
     "UserFactory",
     UserShowControllerFunction
   ])
+  // .controller("UserNewController", [
+  //   "$state",
+  //   "UserFactory",
+  //   UserNewControllerFunction
+  // ])
 
 
   function Router($stateProvider) { //defining the main route view
@@ -71,6 +76,10 @@ angular
       controller: "UserShowController",
       controllerAs: "vm"
     })
+    // .state("userNew", {
+    //   url: "/maintenance_requests/:tenant_name/users/new"
+    //   templateUrl:
+    // })
 
   }
 
@@ -108,12 +117,8 @@ angular
   }
 }
   //view for users
-  function UserShowControllerFunction (Maintenance_RequestFactory, UserFactory, $stateParams ) {
-    this.maintenance_request = Maintenance_RequestFactory.get({tenant_name: $stateParams.tenant_name}, (maintenance_request) => {
-      console.log($stateParams.tenant_name)
-      this.users = maintenance_requests.UserFactory.query({tenant_name: $stateParams.tenant_name.users})
-        console.log($stateParams.tenant_name)
-    })
+  function UserShowControllerFunction ($state, $stateParams, UserFactory ) {
+      this.users = UserFactory.query({tenant_name: $stateParams.tenant_name.users})
+        console.log($stateParams.tenant_name.users)
 
-
-  }
+  //create users
