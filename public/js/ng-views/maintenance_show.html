@@ -1,17 +1,23 @@
-<h2>{{vm.maintenance_request.tenant_name}}</h2>
-<p>{{vm.maintenance_request.building_number}}</p>
-<p>{{vm.maintenance_request.apt_number}}</p>
-<p>{{vm.maintenance_request.type}}</p>
-<p>{{vm.maintenance_request.urgency}}</p>
-<p>{{vm.maintenance_request.description}}</p>
-<p>{{vm.maintenance_request.completed}}</p>
+<p>Tenant's Name: {{vm.maintenance_request.tenant_name}}</p>
+<p>Tenant's Building Number: {{vm.maintenance_request.building_number}}</p>
+<p>Tenant's Apartment Number: {{vm.maintenance_request.apt_number}}</p>
+<p>Maintenance Needed: {{vm.maintenance_request.type}}</p>
+<p>Level of Urgency: {{vm.maintenance_request.urgency}}</p>
+<p>Give a description: {{vm.maintenance_request.description}}</p>
+<p>Completed? {{vm.maintenance_request.completed}}</p>
 
-<input type="text" ng-model="vm.maintenance_request.tenant_name">
-<input type="text" ng-model="vm.maintenance_request.building_number">
-<input type="text" ng-model="vm.maintenance_request.apt_number">
-<input type="text" ng-model="vm.maintenance_request.type">
-<input type="text" ng-model="vm.maintenance_request.urgency">
-<textarea type="text" ng-model="vm.maintenance_request.description"></textarea>
-<input type="text" ng-model="vm.maintenance_request.completed">
-<button data-ng-click="vm.update()">Update Entry</button>
-<button data-ng-click="vm.destroy()">Delete Request</button>
+<div class="form">
+    <form>
+      <label><span>Tenant's Name:</span><input type="text" ng-model="vm.maintenance_request.tenant_name"></label>
+      <label><span>Building Number:</span><input type="text" ng-model="vm.maintenance_request.building_number"></label>
+      <label><span>Apt Number:</span><input type="text" ng-model="vm.maintenance_request.apt_number"></label>
+      <label><span>Request:</span><input type="text" ng-model="vm.maintenance_request.type"></label>
+      <label><span>Urgency:</span><input type="text" ng-model="vm.maintenance_request.urgency"></label>
+      <label><span>Description:</span><textarea type="text" ng-model="vm.maintenance_request.description"></textarea></label>
+      <label><span>Status:</span><input type="text" ng-model="vm.maintenance_request.completed"></label>
+        <div class="button">
+          <button data-ng-click="vm.update()">Update Entry</button>
+          <button data-ng-click="vm.destroy()">Delete Request</button>
+        </div>
+      </form>
+</div>
