@@ -15,9 +15,10 @@ const Maintenance_RequestSchema = new mongoose.Schema({
 })
 
 const UserSchema = new mongoose.Schema({
+  name: String,
   category: String,
   division: String,
-//   maintenance_requests: [ {type: Schema.ObjectId, ref:"Maintenance_Request"} ]
+  Maintenance_Requests: [ {type: Schema.ObjectId, ref:"Maintenance_Request"} ]
 })
 
 const Maintenance_Request = mongoose.model("Maintenance_Request", Maintenance_RequestSchema);

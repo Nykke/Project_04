@@ -16,11 +16,13 @@ User.remove({}, err => {
 
 //generating new instances of maintenance_requests and users
 var tom = new User({
+  name: "Tom",
   category: "tenant",
   division : "apartment"
 });
 
 var dede = new User({
+  name: "Dede",
   category: "landlord",
   division: "management"
 });
@@ -46,21 +48,25 @@ var kitchen = new Maintenance_Request({
 });
 
 var rachel = new User({
+  name: "Rachel",
   category: "tenant",
   division: "apartment"
 });
 
 var maria = new User({
+  name: "Maria",
   category: "landlord",
   division: "apartment"
 });
 
 var jackie = new User({
+  name: "Jackie",
   category: "tenant",
   division: "apartment"
 });
 
 var angie = new User({
+  name: "Angie",
   category: "landlord",
   division: "management"
 });
