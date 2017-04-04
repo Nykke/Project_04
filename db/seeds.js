@@ -27,26 +27,6 @@ var dede = new User({
   division: "management"
 });
 
-var bathroom = new Maintenance_Request({
-  tenant_name: "Tom",
-  building_number: 17101,
-  apt_number: 101,
-  type: "bathroom",
-  urgency: "high",
-  description: "show is overflowing when water is turned on",
-  completed: "no"
-});
-
-var kitchen = new Maintenance_Request({
-  tenant_name: "Rachel",
-  building_number: 20033,
-  apt_number: 204,
-  type: "kitchen",
-  urgency: "medium",
-  description: "light is flickering",
-  completed: "no"
-});
-
 var rachel = new User({
   name: "Rachel",
   category: "tenant",
@@ -71,6 +51,28 @@ var angie = new User({
   division: "management"
 });
 
+var bathroom = new Maintenance_Request({
+  tenant_name: "Tom",
+  building_number: 17101,
+  apt_number: 101,
+  type: "bathroom",
+  urgency: "high",
+  description: "show is overflowing when water is turned on",
+  completed: "no",
+  users: [tom, dede]
+});
+
+var kitchen = new Maintenance_Request({
+  tenant_name: "Rachel",
+  building_number: 20033,
+  apt_number: 204,
+  type: "kitchen",
+  urgency: "medium",
+  description: "light is flickering",
+  completed: "no",
+  users: [maria, rachel]
+});
+
 var ac = new Maintenance_Request({
   tenant_name: "Jackie",
   building_number: 34005,
@@ -78,7 +80,9 @@ var ac = new Maintenance_Request({
   type: "ac",
   urgency: "high",
   description: "air is no longer turning on, making a weird noise",
-  completed: "yes"
+  completed: "yes",
+  users: [jackie, angie]
+
 });
 
 //users and maintenance_requests are defined
