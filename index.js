@@ -77,11 +77,11 @@ app.delete("/api/maintenance_requests/:tenant_name", function(req, res){
 
 //route defined to show users attached to request
 app.get("/api/maintenance_requests/:tenant_name/users", function(req, res, next){
-  req.maintenance_request.populate("users", function(err, maintenance_request){
+  req.user.populate("users", function(err, user){
     if(err) {
       return next(err);
     }
-    res.json(maintenance_request)
+    res.json(user)
   })
 })
 

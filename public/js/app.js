@@ -104,7 +104,7 @@ angular
   }
 }
 
-  //setting up what the show controller returns
+  //setting up what the show controller returns for maintenance_requests
   function Maintenance_RequestShowControllerFunction ( $state, $stateParams, Maintenance_RequestFactory ) {
   this.maintenance_request = Maintenance_RequestFactory.get({tenant_name: $stateParams.tenant_name})
   this.update = function (){
@@ -116,9 +116,10 @@ angular
     })
   }
 }
-  //view for users
+  //view for users for one maintenance_request
   function UserShowControllerFunction ($state, $stateParams, UserFactory ) {
-      this.users = UserFactory.query({tenant_name: $stateParams.tenant_name.users})
-        console.log($stateParams.tenant_name.users)
+      this.user = UserFactory.query({tenant_name: $stateParams.tenant_name.user})
+        console.log($stateParams.tenant_name.user)
+}
 
   //create users
