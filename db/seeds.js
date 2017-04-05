@@ -99,7 +99,19 @@ maintenance_requests.forEach(function(maintenance_request,i){
       console.log("request made!");
     }
   });
-});
+})
+
+//assigning users to maintenance_requests
+// users.forEach(function(user,i){
+//   user.maintenance_requests.push(maintenance_requests[i], maintenance_requests[i+1]);
+//   user.save(function(err){
+//     if (err){
+//       console.log(err);
+//     } else {
+//       console.log("request made!");
+//     }
+//   });
+// })
 
 //assigning specific maintenance_requests to specific users
 bathroom.users.push(tom, dede)
