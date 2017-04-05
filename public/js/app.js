@@ -13,11 +13,10 @@ angular
     "$resource",
     Maintenance_RequestFactoryFunction
   ])
-  .factory("UserFactory", function($resource){
-    return $resource ("/api/maintenance_requests/:tenant_name/users/:name", {}, {
-        update: {method: "PUT"}
-      })
-  })
+  .factory("UserFactory", [
+    "$resource",
+    UserFactoryFunction
+  ])
   .controller("Maintenance_RequestIndexController", [
     "Maintenance_RequestFactory",
     Maintenance_RequestIndexControllerFunction
@@ -89,7 +88,11 @@ angular
       update: {method: "PUT"}
     })
   }
-
+  function UserFactoryFunction($resource){
+    return $resource ("/api/maintenance_requests/:tenant_name/users", {tenant_name: "@tenant_name"}, {
+        get: {method: "GET", params: {}, isArray: false}
+      })
+    }
   //setting up what the index controller returns
   function Maintenance_RequestIndexControllerFunction( Maintenance_RequestFactory ){
     this.maintenance_requests = Maintenance_RequestFactory.query();
@@ -118,8 +121,9 @@ angular
 }
   //view for users for one maintenance_request
   function UserShowControllerFunction ($state, $stateParams, UserFactory ) {
-      this.user = UserFactory.query({tenant_name: $stateParams.tenant_name.user})
-        console.log($stateParams.tenant_name.user)
+      this.tenant = UserFactory.get({tenant_name: $stateParams.tenant_name}, (tenant) => {
+        this.users = tenant.users
+      })
 }
 
   //create users

@@ -1,4 +1,9 @@
-<p>Users on this form</p>
-  <p>User: {{vm.user.name}}</p>
-  <p>Category: {{vm.user.category}}</p>
-  <p>Division: {{vm.user.division}}</p>
+
+<div class="userDisplay">
+  <h3>Users on this form</h3>
+  <div data-ng-repeat="user in vm.users">
+    <p>User: {{user.name}}</p>
+    <p>Category: {{user.category}}</p>
+    <p>Division: {{user.division}}</p>
+  </div>
+</div>
