@@ -2,8 +2,9 @@
 const express = require("express");
 const app = express();
 
-//server for angular
-const http = require("http").Server(app);
+//server for angular and sockets
+var server = require("http").createServer(app);
+var io = require("socket.io").listen(server);
 
 //defining body-parser
 const parser = require("body-parser");
@@ -11,6 +12,10 @@ const parser = require("body-parser");
 //pulling schemas from models
 const User = require("./db/models.js").User;
 const Maintenance_Request = require("./db/models.js").Maintenance_Request;
+
+//where chat messages will go
+users = [];
+connections = [];
 
 //connect to mongoose
 const mongoose = require("./db/connection.js");
@@ -39,6 +44,38 @@ app.use(function(req, res, next) {
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/index.html")
 })
+
+//sockets connection
+io.sockets.on("connection", function(socket){
+  connections.push(socket);
+  console.log("Connected: %s sockets connected", connections.length)
+  //disconnections
+  socket.on("disconnect", function(data){
+    users.splice(users.indexOf(socket.username), 1)
+    connections.splice(connections.indexOf(socket), 1)
+    console.log("Disconnected: %s sockets connected", connections.length)
+  })
+})
+
+//send chat messages
+var socket = io;
+socket.on("send message", function(data){
+  io.sockets.emit("new message", {msg: data, user: socket.username});
+  console.log(data)
+})
+
+//new user
+socket.on("new user", function(data, callback){
+  callback(true);
+  socket.username = data;
+  users.push(socket.username);
+  updateUsernames()
+})
+
+function updateUsernames(){
+  io.sockets.emit("get users", users)
+}
+
 
 //route defined for the index of all maintenance_requests
 app.get("/api/maintenance_requests", function(req, res){
@@ -77,11 +114,11 @@ app.delete("/api/maintenance_requests/:tenant_name", function(req, res){
 
 //route defined to show users attached to request
 app.get("/api/maintenance_requests/:tenant_name/users", function(req, res, next){
-  req.maintenance_request.users.populate("users", function(err, user){
+  req.maintenance_request.populate("users", function(err, maintenance_request){
     if(err) {
       return next(err);
     }
-    res.json(user)
+    res.json(maintenance_request)
   })
 })
 
