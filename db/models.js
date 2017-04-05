@@ -1,5 +1,11 @@
 const mongoose = require('./connection.js')
 
+const UserSchema = new mongoose.Schema({
+  name: String,
+  category: String,
+  division: String
+})
+
 const Maintenance_RequestSchema = new mongoose.Schema({
   tenant_name: String,
   building_number: Number,
@@ -8,15 +14,9 @@ const Maintenance_RequestSchema = new mongoose.Schema({
   urgency: String,
   description: String,
   completed: String,
-  users: {type: mongoose.Schema.Types.ObjectId, ref:"User"}
+  users: [UserSchema]
 })
 
-const UserSchema = new mongoose.Schema({
-  name: String,
-  category: String,
-  division: String,
-  // Maintenance_Requests: [ {type: Schema.ObjectId, ref:"Maintenance_Request"} ]
-})
 
 const Maintenance_Request = mongoose.model("Maintenance_Request", Maintenance_RequestSchema);
 const User = mongoose.model("User", UserSchema);
