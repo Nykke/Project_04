@@ -125,19 +125,19 @@ angular
         this.users = tenant.users
 
         //create new user attached to one maintenance_request
-        // this.newUser = new UserFactory()
-        // this.newUser.create = function(){
-        //   this.newUser.$save(function(user){
-        //     $state.reload()
-        //   })
-
         this.newUser = new UserFactory()
         this.newUser.create = function(){
-          this.newUser.$save({tenant_name: $stateParams.tenant_name}).then(function(user){
-            this.UserFactory.push(user)
-          // this.maintenance_request = maintenance_request.UserFactory.push(user)
+          this.newUser.$save(function(user){
             $state.reload()
-          })
+        })
+
+        // this.newUser = new UserFactory()
+        // this.newUser.create = function(){
+        //   this.newUser.$save({tenant_name: $stateParams.tenant_name}).then(function(user){
+        //     this.UserFactory.push(user)
+        //   // this.maintenance_request = maintenance_request.UserFactory.push(user)
+        //     $state.reload()
+        //   })
 
           // ({tenant_name: $stateParams.tenant_name}).then(function(user){
           //   this.UserFactory.push(user)
