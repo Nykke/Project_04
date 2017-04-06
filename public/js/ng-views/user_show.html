@@ -1,0 +1,18 @@
+
+<div class="userDisplay">
+  <h3>Users on this form</h3>
+  <div data-ng-repeat="user in vm.users">
+    <p>User: {{user.name}}</p>
+    <p>Category: {{user.category}}</p>
+    <p>Division: {{user.division}}</p>
+  </div>
+</div>
+
+<h2>add a new user</h2>
+
+<form ng-submit="vm.newUser.create()">
+  <input type="text" ng-model="vm.newUser.name" placeholder="name">
+  <input type="text" ng-model="vm.newUser.category" placeholder="category">
+  <input type="text" ng-model="vm.newUser.division" placeholder="division">
+  <button type="submit">Submit</button>
+</form>

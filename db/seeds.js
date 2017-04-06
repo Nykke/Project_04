@@ -16,11 +16,37 @@ User.remove({}, err => {
 
 //generating new instances of maintenance_requests and users
 var tom = new User({
+  name: "Tom",
   category: "tenant",
   division : "apartment"
 });
 
 var dede = new User({
+  name: "Dede",
+  category: "landlord",
+  division: "management"
+});
+
+var rachel = new User({
+  name: "Rachel",
+  category: "tenant",
+  division: "apartment"
+});
+
+var maria = new User({
+  name: "Maria",
+  category: "landlord",
+  division: "apartment"
+});
+
+var jackie = new User({
+  name: "Jackie",
+  category: "tenant",
+  division: "apartment"
+});
+
+var angie = new User({
+  name: "Angie",
   category: "landlord",
   division: "management"
 });
@@ -32,7 +58,8 @@ var bathroom = new Maintenance_Request({
   type: "bathroom",
   urgency: "high",
   description: "show is overflowing when water is turned on",
-  completed: "no"
+  completed: "no",
+  users: [tom, dede]
 });
 
 var kitchen = new Maintenance_Request({
@@ -42,27 +69,8 @@ var kitchen = new Maintenance_Request({
   type: "kitchen",
   urgency: "medium",
   description: "light is flickering",
-  completed: "no"
-});
-
-var rachel = new User({
-  category: "tenant",
-  division: "apartment"
-});
-
-var maria = new User({
-  category: "landlord",
-  division: "apartment"
-});
-
-var jackie = new User({
-  category: "tenant",
-  division: "apartment"
-});
-
-var angie = new User({
-  category: "landlord",
-  division: "management"
+  completed: "no",
+  users: [maria, rachel]
 });
 
 var ac = new Maintenance_Request({
@@ -72,7 +80,9 @@ var ac = new Maintenance_Request({
   type: "ac",
   urgency: "high",
   description: "air is no longer turning on, making a weird noise",
-  completed: "yes"
+  completed: "yes",
+  users: [jackie, angie]
+
 });
 
 //users and maintenance_requests are defined
@@ -89,7 +99,7 @@ maintenance_requests.forEach(function(maintenance_request,i){
       console.log("request made!");
     }
   });
-});
+})
 
 //assigning specific maintenance_requests to specific users
 bathroom.users.push(tom, dede)

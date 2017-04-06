@@ -27,7 +27,7 @@ app.use(parser.urlencoded({extended: true}));
 app.use(parser.json());
 app.use(methodOverride('X-HTTP-Method-Override'));
 
-// CORS Support
+//CORS Support
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -75,7 +75,26 @@ app.delete("/api/maintenance_requests/:tenant_name", function(req, res){
   });
 })
 
+// //route defined to show users attached to request
+app.get("/api/maintenance_requests/:tenant_name/users", function(req, res){
+  Maintenance_Request.findOne({tenant_name: req.params.tenant_name}).then(function(maintenance_request){
+    res.json(maintenance_request)
+  })
+})
+
+//route defined to create users attached to a request
+app.post("/api/maintenance_requests/:tenant_name/users", function(req, res){
+  Maintenance_Request.findOne({tenant_name: req.params.tenant_name}).then(function(maintenance_request){
+     User.create({name: req.body.name, category: req.body.category, division: req.body.division}).then(function(user){
+       maintenance_request.users.push(user)
+       maintenance_request.save(function(maintenance_request){
+        res.json(user);
+        })
+     })
+  })
+})
+
 //port where our app resides
 app.listen(3001, () => {
   console.log("express is connected")
-});
+})
