@@ -1,8 +1,7 @@
-<h2>All Maintenance Requests</h2>
-<p>Requests submitted by the following tenants:</p>
-<p data-ng-repeat="maintenance_request in vm.maintenance_requests">
-  <a data-ui-sref="maintenance_show({tenant_name: maintenance_request.tenant_name})">
-    {{maintenance_request.tenant_name}}</a>
-</p>
+<h3 class="mhead">All Maintenance Requests</h3>
+<h4 class="msecondhead">Requests submitted by the following tenants:</h4>
+<div data-ng-repeat="maintenance_request in vm.maintenance_requests">
+  <p>tenant: <a data-ui-sref="maintenance_show({tenant_name: maintenance_request.tenant_name})">{{maintenance_request.tenant_name}}</a></p>
+</div>
 
-<p><a data-ui-sref="maintenance_new">Create a Maintenance Request</a></p>
+<p class="mwords"><a data-ui-sref="maintenance_new">Create a Maintenance Request</a></p>

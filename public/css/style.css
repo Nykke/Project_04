@@ -1,11 +1,10 @@
 html {
   font-family: 'Audiowide', cursive;
-  /*background-image: url('/assets/images/apartments.jpeg')*/
 }
 
 .title {
   text-align: center;
-  font-size: 38px;
+  font-size: 45px;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -47,4 +46,21 @@ body::after {
   right: 0;
   left: 0;
   z-index: -1;
+}
+
+.mhead {
+  text-align: center;
+  font-size: 32px;
+  color: #FFF;
+  text-shadow: 1.5px 1.5px 3.4px #000;
+}
+
+.msecondhead {
+  font-size: 26px;
+  color: #000;
+  text-shadow: 1.5px 1.5px 3.4px #FFF;
+}
+
+.mwords {
+  text-align: right;
 }
