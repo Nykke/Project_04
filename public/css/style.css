@@ -18,3 +18,13 @@ a {
 a:hover{
   color: #5b59E8;
 }
+
+.announce {
+  margin: 10px 25px;
+  padding: 5px;
+  border: 1px solid red;
+}
+
+.words {
+  text-align: center;
+}
