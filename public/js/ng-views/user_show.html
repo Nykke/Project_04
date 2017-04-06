@@ -7,3 +7,12 @@
     <p>Division: {{user.division}}</p>
   </div>
 </div>
+
+<h2>add a new user</h2>
+
+<form ng-submit="vm.create()">
+  <input type="text" ng-model="vm.user.name" placeholder="name">
+  <input type="text" ng-model="vm.user.category" placeholder="category">
+  <input type="text" ng-model="vm.user.division" placeholder="division">
+  <button type="submit">Submit</button>
+</form>

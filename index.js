@@ -2,9 +2,8 @@
 const express = require("express");
 const app = express();
 
-//server for angular and sockets
-var server = require("http").createServer(app);
-var io = require("socket.io").listen(server);
+//server for angular
+const http = require("http").Server(app);
 
 //defining body-parser
 const parser = require("body-parser");
@@ -12,10 +11,6 @@ const parser = require("body-parser");
 //pulling schemas from models
 const User = require("./db/models.js").User;
 const Maintenance_Request = require("./db/models.js").Maintenance_Request;
-
-//where chat messages will go
-users = [];
-connections = [];
 
 //connect to mongoose
 const mongoose = require("./db/connection.js");
@@ -33,12 +28,12 @@ app.use(parser.json());
 app.use(methodOverride('X-HTTP-Method-Override'));
 
 // CORS Support
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
+// app.use(function(req, res, next) {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type');
+//   next();
+// });
 
 //connecting to angular
 app.get("/", function(req, res) {
@@ -86,9 +81,16 @@ app.get("/api/maintenance_requests/:tenant_name/users", function(req, res){
     res.json(maintenance_request)
   })
 })
-//
-// //route defined to create users attached to a request
-// app.post("/api/maintenance_requests/:tenant_name/users", function(req, res, next){
+
+//route defined to create users attached to a request
+app.post("/api/maintenance_requests/:tenant_name/users", function(req, res){
+  Maintenance_Request.findOne({tenant_name: req.tenant_name}).then(function(){
+    User.create({name: req.body.name, category: req.body.category, division: req.body.division}).then((user) => {
+      res.json(user)
+    })
+  })
+})
+
 //   var user = new User(req.body)
 //   user.maintenance_request = req.maintenance_request
 //   user.save(function(err, user){
@@ -101,14 +103,6 @@ app.get("/api/maintenance_requests/:tenant_name/users", function(req, res){
 //       res.json(user);
 //     })
 //   })
-// })
-//
-// //route defined to update users attached to a request
-// app.put("/api/maintenance_requests/:tenant_name/users/:name", function(req, res, next){
-//   Maintenance_Request.User.findOneAndUpdate({name: req.params.name}, req.body,
-//     {new: true}).then(function(user){
-//       res.json(user)
-//     })
 // })
 
 //port where our app resides

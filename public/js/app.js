@@ -38,11 +38,6 @@ angular
     "UserFactory",
     UserShowControllerFunction
   ])
-  // .controller("UserNewController", [
-  //   "$state",
-  //   "UserFactory",
-  //   UserNewControllerFunction
-  // ])
 
 
   function Router($stateProvider) { //defining the main route view
@@ -75,30 +70,33 @@ angular
       controller: "UserShowController",
       controllerAs: "vm"
     })
-    // .state("userNew", {
-    //   url: "/maintenance_requests/:tenant_name/users/new"
-    //   templateUrl:
-    // })
 
   }
 
   //link to our backend api
+  //api and method used to call the backend
   function Maintenance_RequestFactoryFunction($resource) {
     return $resource("/api/maintenance_requests/:tenant_name", {}, {
       update: {method: "PUT"}
     })
   }
+
+  //need a different user factory
   function UserFactoryFunction($resource){
     return $resource ("/api/maintenance_requests/:tenant_name/users", {tenant_name: "@tenant_name"}, {
-        get: {method: "GET", params: {}, isArray: false}
+      //need to specify which methods are being used for the second model, users
+        get: {method: "GET", params: {}, isArray: false},
+        create: {method: "POST"}
       })
     }
-  //setting up what the index controller returns
+
   function Maintenance_RequestIndexControllerFunction( Maintenance_RequestFactory ){
+    //shows all maintenance_requests made
     this.maintenance_requests = Maintenance_RequestFactory.query();
   }
 
   function Maintenance_RequestNewControllerFunction( $state, Maintenance_RequestFactory ){
+    //creates new maintenance_requests
     this.maintenance_request = new Maintenance_RequestFactory();
     this.create = function(){
       this.maintenance_request.$save(function(maintenance_request){
@@ -107,12 +105,15 @@ angular
   }
 }
 
-  //setting up what the show controller returns for maintenance_requests
+
   function Maintenance_RequestShowControllerFunction ( $state, $stateParams, Maintenance_RequestFactory ) {
+    //shows all maintenance_requests by tenant name
   this.maintenance_request = Maintenance_RequestFactory.get({tenant_name: $stateParams.tenant_name})
+  //updates all maintenance_requests
   this.update = function (){
     this.maintenance_request.$update({tenant_name: $stateParams.tenant_name})
   }
+  //deletes all maintenance_requests
   this.destroy = function(){
     this.maintenance_request.$delete({tenant_name: $stateParams.tenant_name}, function() {
       $state.go("welcome")
@@ -123,7 +124,15 @@ angular
   function UserShowControllerFunction ($state, $stateParams, UserFactory ) {
       this.tenant = UserFactory.get({tenant_name: $stateParams.tenant_name}, (tenant) => {
         this.users = tenant.users
-      })
-}
 
-  //create users
+        //create new user attached to one maintenance_request
+        this.newUser = new UserFactory()
+        this.newUser.create = function(){
+          this.newUser.$save({tenant_name: $stateParams.tenant_name}).then(function(user){
+            this.maintenance_request.UserFactory.push(user)
+            // this.maintenance_request = maintenance_request.UserFactory.push(user)
+            $state.reload()
+          })
+        }
+    })
+}
