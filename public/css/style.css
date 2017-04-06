@@ -1,5 +1,5 @@
 html {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Audiowide', cursive;
 }
 
 .title {
@@ -22,7 +22,10 @@ a:hover{
 .announce {
   margin: 10px 25px;
   padding: 5px;
+  /*height: 25em;
+  width: 25em;*/
   border: 1px solid red;
+  box-shadow: inset 0 0 10px 10px #AE631E;
 }
 
 .words {
