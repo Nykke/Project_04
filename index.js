@@ -84,9 +84,10 @@ app.get("/api/maintenance_requests/:tenant_name/users", function(req, res){
 
 //route defined to create users attached to a request
 app.post("/api/maintenance_requests/:tenant_name/users", function(req, res){
-  Maintenance_Request.findOne({tenant_name: req.body.tenant_name}).then(function(){
+  Maintenance_Request.findOne({tenant_name: req.params.tenant_name}).then(function(maintenance_request){
      User.create({name: req.body.name, category: req.body.category, division: req.body.division}).then(function(user){
-       maintenance_request.users.push(user).save(function(maintenance_request){
+       maintenance_request.users.push(user)
+       maintenance_request.save(function(maintenance_request){
         res.json(user);
         })
      })
