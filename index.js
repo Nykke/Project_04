@@ -27,7 +27,7 @@ app.use(parser.urlencoded({extended: true}));
 app.use(parser.json());
 app.use(methodOverride('X-HTTP-Method-Override'));
 
-CORS Support
+//CORS Support
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -92,7 +92,7 @@ app.post("/api/maintenance_requests/:tenant_name/users", function(req, res, next
 // })
 
   var user = new User(req.body)
-  User.maintenance_request = req.maintenance_request
+  User.Maintenance_Request = req.maintenance_request
   User.save(function(err, user){
     if(err){ return next(err);
     }
