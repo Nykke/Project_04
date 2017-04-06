@@ -15,7 +15,7 @@ const Maintenance_Request = require("./db/models.js").Maintenance_Request;
 //connect to mongoose
 const mongoose = require("./db/connection.js");
 
-// const methodOverride = require('method-override');
+const methodOverride = require('method-override');
 
 app.set("port", process.env.PORT || 3001)
 
@@ -25,15 +25,15 @@ app.use("/assets", express.static("public"))
 // Add Middleware necessary for REST API's
 app.use(parser.urlencoded({extended: true}));
 app.use(parser.json());
-// app.use(methodOverride('X-HTTP-Method-Override'));
+app.use(methodOverride('X-HTTP-Method-Override'));
 
-// CORS Support
-// app.use(function(req, res, next) {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-//   res.header('Access-Control-Allow-Headers', 'Content-Type');
-//   next();
-// });
+CORS Support
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 
 //connecting to angular
 app.get("/", function(req, res) {
@@ -83,27 +83,27 @@ app.get("/api/maintenance_requests/:tenant_name/users", function(req, res){
 })
 
 //route defined to create users attached to a request
-app.post("/api/maintenance_requests/:tenant_name/users", function(req, res){
-  Maintenance_Request.findOne({tenant_name: req.tenant_name}).then(function(){
-    User.create(req.body).then(function(user){
-      res.json(user)
-    })
-  })
-})
-
-//   var user = new User(req.body)
-//   user.maintenance_request = req.maintenance_request
-//   user.save(function(err, user){
-//     if(err){ return next(err);
-//     }
-//     req.maintenance_request.users.push(user);
-//     req.maintenance_request.save(function(err, maintenance_request){
-//       if(err){ return next(err);
-//       }
-//       res.json(user);
+app.post("/api/maintenance_requests/:tenant_name/users", function(req, res, next){
+//   Maintenance_Request.findOne({tenant_name: req.tenant_name}).then(function(){
+//     User.create(req.body).then(function(user){
+//       res.json(user)
 //     })
 //   })
 // })
+
+  var user = new User(req.body)
+  User.maintenance_request = req.maintenance_request
+  User.save(function(err, user){
+    if(err){ return next(err);
+    }
+    req.maintenance_request.users.push(user);
+    req.maintenance_request.save(function(err, maintenance_request){
+      if(err){ return next(err);
+      }
+      res.json(user);
+    })
+  })
+})
 
 //port where our app resides
 app.listen(3001, () => {
