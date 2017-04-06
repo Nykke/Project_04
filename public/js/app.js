@@ -129,7 +129,7 @@ angular
         this.newUser = new UserFactory()
         this.newUser.create = function(){
           this.newUser.$save({tenant_name: $stateParams.tenant_name}).then(function(user){
-            this.maintenance_request.UserFactory.push(user)
+            this.UserFactory.push(user)
             // this.maintenance_request = maintenance_request.UserFactory.push(user)
             $state.reload()
           })

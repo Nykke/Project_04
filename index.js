@@ -15,7 +15,7 @@ const Maintenance_Request = require("./db/models.js").Maintenance_Request;
 //connect to mongoose
 const mongoose = require("./db/connection.js");
 
-const methodOverride = require('method-override');
+// const methodOverride = require('method-override');
 
 app.set("port", process.env.PORT || 3001)
 
@@ -25,7 +25,7 @@ app.use("/assets", express.static("public"))
 // Add Middleware necessary for REST API's
 app.use(parser.urlencoded({extended: true}));
 app.use(parser.json());
-app.use(methodOverride('X-HTTP-Method-Override'));
+// app.use(methodOverride('X-HTTP-Method-Override'));
 
 // CORS Support
 // app.use(function(req, res, next) {
@@ -85,7 +85,7 @@ app.get("/api/maintenance_requests/:tenant_name/users", function(req, res){
 //route defined to create users attached to a request
 app.post("/api/maintenance_requests/:tenant_name/users", function(req, res){
   Maintenance_Request.findOne({tenant_name: req.tenant_name}).then(function(){
-    User.create({name: req.body.name, category: req.body.category, division: req.body.division}).then((user) => {
+    User.create(req.body).then(function(user){
       res.json(user)
     })
   })
