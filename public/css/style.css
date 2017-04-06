@@ -1,5 +1,6 @@
 html {
   font-family: 'Audiowide', cursive;
+  /*background-image: url('/assets/images/apartments.jpeg')*/
 }
 
 .title {
@@ -22,10 +23,28 @@ a:hover{
 .announce {
   margin: 10px 25px;
   padding: 5px;
-  border: 1px solid red;
-  box-shadow: inset 0 0 10px 10px #279CF3;
+  border: 1px solid #000;
+  box-shadow: inset 0 0 10px 10px #325C74;
+  color: #000;
+  text-shadow: 1.5px 1.5px 3.4px #FFF;
 }
 
 .words {
   text-align: center;
+}
+
+.suggestion {
+  text-align: right;
+}
+
+body::after {
+  background-image: url('/assets/images/apartments.jpeg');
+  content: '';
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;
 }
