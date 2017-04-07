@@ -95,6 +95,6 @@ app.post("/api/maintenance_requests/:tenant_name/users", function(req, res){
 })
 
 //port where our app resides
-app.listen(3001, () => {
-  console.log("express is connected")
+app.listen(app.get("port"), function(){
+  console.log("Connected")
 })
