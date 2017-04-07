@@ -15,7 +15,7 @@ T => L COMM is a communication web application for landlord and tenants, right n
 - link to the screenshot of the main page: https://github.com/Nykke/project_04/blob/master/public/images/T%20%3D%3E%20L%20COMM%20welcom%20page.png
 - link to the User Stories: https://github.com/Nykke/project_04/blob/master/planning/User%20Stories%20Project%2004.txt
 - link to ERDs: https://github.com/Nykke/project_04/blob/master/planning/Project_four_ERDs_MVP.jpg
-- link to the Wireframes: https://github.com/Nykke/project_04/blob/master/planning/Project_04_Welcome_view.jpg , https://github.com/Nykke/project_04/blob/master/planning/Project_04_Tenant_view.jpg , https://github.com/Nykke/project_04/blob/master/planning/Project_04_Landlord_view.jpg
+- link to the Wireframes: https://github.com/Nykke/project_04/blob/master/planning/Project_04_Welcome_view.jpg, https://github.com/Nykke/project_04/blob/master/planning/Project_04_Tenant_view.jpg, https://github.com/Nykke/project_04/blob/master/planning/Project_04_Landlord_view.jpg
 
 -  Deployed app :
 
