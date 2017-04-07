@@ -136,3 +136,17 @@ button {
 .formc {
   padding: 17px;
 }
+
+.userfirst {
+  font-size: 35px;
+  font-variant: small-caps;
+  font-weight: bold;
+  color: #000;
+  text-shadow: 1.5px 1.5px 3.4px #FFF;
+}
+
+.usersecond {
+  color: #000;
+  text-shadow: 1.5px 1.5px 3.4px #FFF;
+  font-weight: bold;
+}
