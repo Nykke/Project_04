@@ -9,9 +9,9 @@ const mongoose = require('mongoose');
 // })
 
 console.log("NODE ENV:" + process.env.NODE_ENV);
-console.log("MDB URL:" + process.env.MONGODB_URL);
+console.log("MDB URL:" + process.env.MONGOLAB_URL);
 if(process.env.NODE_ENV == "production"){
-  mongoose.connect(process.env.MONGODB_URL);
+  mongoose.connect(process.env.MONGOLAB_URL);
 } else {
   mongoose.connect("mongodb://localhost/project_04_db");
 }
