@@ -8,6 +8,8 @@ const mongoose = require('mongoose');
 //   }
 // })
 
+console.log("NODE ENV:" + process.env.NODE_ENV);
+console.log("MDB URL:" + process.env.MONGODB_URL);
 if(process.env.NODE_ENV == "production"){
   mongoose.connect(process.env.MONGODB_URL);
 } else {
