@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
 if(process.env.NODE_ENV == "production"){
   mongoose.connect(process.env.MONGODB_URL);
 } else {
-  mongoose.connect("mongodb://localhost/project4");
+  mongoose.connect("mongodb://localhost/project_04_db");
 }
 
 module.exports = mongoose;
