@@ -36,15 +36,16 @@ a:hover{
   text-align: right;
 }
 
+/*gives the background image transparency and makes it visible globally*/
 body::after {
   background-image: url('/assets/images/apartments.jpeg');
   content: '';
   opacity: 0.6;
   position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
+  top: -100vh;
+  bottom: -100vh;
+  right: -100vw;
+  left: -100vw;
   z-index: -1;
 }
 
@@ -63,4 +64,65 @@ body::after {
 
 .mwords {
   text-align: right;
+}
+
+.tenantlist {
+  height: 35em;
+  width: 35em;
+  font-size: 20px;
+  color: #000;
+  text-shadow: 1.5px 1.5px 3.4px #FFF;
+}
+
+.form {
+  position: relative;
+  bottom: 16em;
+}
+.form label{
+  display: block;
+  margin: 3px 3px 35px 3px;
+}
+
+.form label > span{
+  font-size: 20px;
+  width: 100px;
+  font-weight: bold;
+  float: left;
+  padding-top: 8px;
+  padding-right: 15px;
+}
+
+input {
+  height: 20px;
+  width: 150px;
+  box-shadow: 1px 1px 4px #EBEBEB;
+  border-radius: 3px;
+}
+
+textarea {
+  height: 80px;
+  width: 25em;
+  box-shadow: 1px 1px 4px #EBEBEB;
+  border-radius: 3px;
+  border-color: #C4C9D1;
+}
+
+.updateR {
+  position: relative;
+  top: -14em;
+}
+
+.usersname {
+  position: relative;
+  top: -16em;
+  left: 0em;
+}
+
+button {
+  border: none;
+  padding: 8px 15px 8px 15px;
+  background: #B44;
+  color: #FFF;
+  box-shadow: 1px 1px 4px #DADADA;
+  border-radius: 2px
 }

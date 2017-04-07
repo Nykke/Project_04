@@ -1,27 +1,27 @@
-<p>Tenant's Name: {{vm.maintenance_request.tenant_name}}</p>
-<p>Tenant's Building Number: {{vm.maintenance_request.building_number}}</p>
-<p>Tenant's Apartment Number: {{vm.maintenance_request.apt_number}}</p>
-<p>Maintenance Needed: {{vm.maintenance_request.type}}</p>
-<p>Level of Urgency: {{vm.maintenance_request.urgency}}</p>
-<p>Give a description: {{vm.maintenance_request.description}}</p>
-<p>Completed? {{vm.maintenance_request.completed}}</p>
-
-
-<div class="form">
-    <form>
-      <label><span>Tenant's Name:</span><input type="text" ng-model="vm.maintenance_request.tenant_name"></label>
-      <label><span>Building Number:</span><input type="text" ng-model="vm.maintenance_request.building_number"></label>
-      <label><span>Apt Number:</span><input type="text" ng-model="vm.maintenance_request.apt_number"></label>
-      <label><span>Request:</span><input type="text" ng-model="vm.maintenance_request.type"></label>
-      <label><span>Urgency:</span><input type="text" ng-model="vm.maintenance_request.urgency"></label>
-      <label><span>Description:</span><textarea type="text" ng-model="vm.maintenance_request.description"></textarea></label>
-      <label><span>Status:</span><input type="text" ng-model="vm.maintenance_request.completed"></label>
-        <div class="button">
-          <button data-ng-click="vm.update()">Update Entry</button>
-          <button data-ng-click="vm.destroy()">Delete Request</button>
-        </div>
-      </form>
+<div class="tenantlist">
+  <p>Tenant's Name: {{vm.maintenance_request.tenant_name}}</p>
+  <p>Tenant's Building Number: {{vm.maintenance_request.building_number}}</p>
+  <p>Tenant's Apartment Number: {{vm.maintenance_request.apt_number}}</p>
+  <p>Maintenance Needed: {{vm.maintenance_request.type}}</p>
+  <p>Level of Urgency: {{vm.maintenance_request.urgency}}</p>
+  <p>Give a description: {{vm.maintenance_request.description}}</p>
+  <p>Completed? {{vm.maintenance_request.completed}}</p>
 </div>
+<h4 class="usersname"><a ui-sref="userShow({tenant_name: vm.maintenance_request.tenant_name})">Users on Request</a></h4>
 
-
-<h4><a ui-sref="userShow({tenant_name: vm.maintenance_request.tenant_name})">users</a></h4>
+<h3 class="updateR">Update Request</h3>
+  <div class="form">
+      <form>
+        <label><span>Tenant's Name:</span><input type="text" ng-model="vm.maintenance_request.tenant_name"></label>
+        <label><span>Building Number:</span><input type="text" ng-model="vm.maintenance_request.building_number"></label>
+        <label><span>Apt Number:</span><input type="text" ng-model="vm.maintenance_request.apt_number"></label>
+        <label><span>Request:</span><input type="text" ng-model="vm.maintenance_request.type"></label>
+        <label><span>Urgency:</span><input type="text" ng-model="vm.maintenance_request.urgency"></label>
+        <label><span>Issue:</span><textarea type="text" ng-model="vm.maintenance_request.description"></textarea></label>
+        <label><span>Status:</span><input type="text" ng-model="vm.maintenance_request.completed"></label>
+          <div class="button">
+            <button data-ng-click="vm.update()">Update Entry</button>
+            <button data-ng-click="vm.destroy()">Delete Request</button>
+          </div>
+        </form>
+  </div>
