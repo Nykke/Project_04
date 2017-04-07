@@ -78,12 +78,12 @@ body::after {
   position: relative;
   bottom: 16em;
 }
-.form label{
+.form label {
   display: block;
   margin: 3px 3px 35px 3px;
 }
 
-.form label > span{
+.form label > span {
   font-size: 20px;
   width: 100px;
   font-weight: bold;
@@ -125,4 +125,14 @@ button {
   color: #FFF;
   box-shadow: 1px 1px 4px #DADADA;
   border-radius: 2px
+}
+
+.mainr {
+  font-size: 25px;
+  color: #000;
+  text-shadow: 1.5px 1.5px 3.4px #FFF;
+}
+
+.formc {
+  padding: 17px;
 }
